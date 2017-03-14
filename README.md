@@ -1,6 +1,9 @@
-Running:
+This is a GitHub repository containing python scripts to convert labels for the SpaceNet competition to labels for the Pascal VOC competition.
 
+Run the command:
 
 python spacenet_labels_dir_to_voc_labels_dir.py raster_dir vector_dir cls_dir inst_dir 
 
-in a directory containing a folder of raster tif files, a folder of vector geojson files, an empty class labels directory to write to, and another empty instance labels directory to write to, will process all of the labels at once.  
+in a directory containing a subdirectory of raster tif files, a subdirectory of vector geojson files, an empty class labels subdirectory, and another empty instance labels subdirectory.
+
+The corresponding Pascal VOC labels will be processed and placed in the two empty class and instance directories.  This allows for segmentation algorithms developed for the Pascal VOC competition to be applied to the SpaceNet data.
