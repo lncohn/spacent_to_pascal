@@ -186,11 +186,21 @@ def CreateInstanceSegmentation(rasterSrc, vectorSrc):
     json_data = open(vectorSrc)
     data = json.load(json_data)
     num_features = len(data['features'])
+    print("Number of features ",num_features)
+
+    srcRas_ds = gdal.Open(rasterSrc)
+    rows = srcRas_ds.RasterXSize
+    cols = srcRas_ds.RasterYSize
     
-    cell_array = np.zeros((num_features,), dtype=np.object)
-    for i in range(num_features):
-        cell_array[i] = CreateSegmentationByFeatureIndex(i, rasterSrc, vectorSrc, npDistFileName='', units='pixels')
-    return cell_array
+    return_array = np.zeros((cols,rows), dtype=np.uint8)
+
+    if(num_features > 0):
+        for i in range(num_features):
+            print("I'm at ",i)
+            print("File check : ",vectorSrc)
+            return_array = return_array + CreateSegmentationByFeatureIndex(i, rasterSrc, vectorSrc, npDistFileName='', units='pixels')
+            
+    return return_array
 
 def CreateBoundariesByFeatureIndex(feature_index, rasterSrc, vectorSrc, npDistFileName='', units='pixels'):
     dist_trans_by_feature = DistanceTransformByFeatureIndex(feature_index, rasterSrc, vectorSrc, npDistFileName='', units='pixels')
