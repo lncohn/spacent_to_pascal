@@ -1,4 +1,4 @@
-This is a GitHub repository containing python scripts to convert labels for the SpaceNet competition to labels for the Pascal VOC competition.
+This is a GitHub repository containing python scripts to convert labels for the 1st SpaceNet competition to labels in the the Pascal VOC SMD format.
 
 Run the command:
 
